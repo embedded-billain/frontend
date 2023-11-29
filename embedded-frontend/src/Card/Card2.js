@@ -6,7 +6,8 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function Card2() {
+export default function Card2(props) {
+  const received_today = props.myProp;
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -14,7 +15,7 @@ export default function Card2() {
           TODAY
         </Typography>
         <Typography variant="h5" component="div">
-          13
+          {received_today}
         </Typography>
         {/* <Typography sx={{ mb: 1.5 }} color="text.secondary">
           adjective

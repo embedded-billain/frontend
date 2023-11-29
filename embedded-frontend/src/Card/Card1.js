@@ -6,7 +6,8 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function Card1() {
+export default function Card1(props) {
+  const received_total_count = props.myProp;
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -14,7 +15,7 @@ export default function Card1() {
           TOTAL
         </Typography>
         <Typography variant="h5" component="div">
-          150
+          {received_total_count}
         </Typography>
         {/* <Typography sx={{ mb: 1.5 }} color="text.secondary">
           adjective
