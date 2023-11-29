@@ -13,9 +13,15 @@
 - 팀별 현황 page 생성
 - Card, Select box, Dataframe, Footer, Logo 생성
   
-
+#### 2023.11.29
+- api 데이터 차트와 연결 완료
+- csv파일로 seoul 테이블 생성
+- bill, seoul 테이블 조인 후 view_data 뷰 테이블 생성  
 
 #### To-Do
 - 라즈베리파이 실행 파일 ex) .exe 생성 -> shell script 작성
 - 라즈베리파이에서 팀 번호 키보드로 입력받을까?
 - api연동 후 차트 그리기
+- 뷰테이블 api받아서 데이터프레임 시각화 해주기
+- 메인화면 추가 요소 고민
+- selectbox ui 고민
