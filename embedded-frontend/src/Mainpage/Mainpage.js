@@ -6,6 +6,7 @@ import Barchart from '../Barchart/MainBarchart';
 import Pichart from '../Pichart/MainPichart';
 import Radarchart from '../Radarchart/Radarchart';
 import Linechart from '../Linechart/Linechart';
+import LoadingAnimation from '../Loading/Loading';
 import axios from "axios";
 
 const Mainpage =()=>{
@@ -27,8 +28,13 @@ const Mainpage =()=>{
   
     // console.log(jsonData.total);
     if (!jsonData) {
-      return <div>Loading...</div>; // You can customize the loading indicator
-      }
+      return( 
+	  <div>
+		<div style={{ fontSize: '24px', padding: '20px 0 0 0' }}>Loading...</div>
+		<div><LoadingAnimation/></div>
+	</div>
+	  
+	  )}
     return(
         <div>
         <div className='Graph0' style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}>

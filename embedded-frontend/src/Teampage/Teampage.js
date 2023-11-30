@@ -11,6 +11,7 @@ import TeamCard3 from './Teamcard3'
 import Barchart from '../Barchart/TeamBarchart';
 import Pichart from '../Pichart/TeamPichart';
 import Dataframe from './Dataframe';
+import LoadingAnimation from '../Loading/Loading';
 
 import { useParams } from 'react-router-dom';
 
@@ -47,7 +48,11 @@ const Teampage =()=>{
         fetchData();
       }, [team_id]);
     if (!jsonData || !teamCount) {
-    return <div>Loading...</div>; // You can customize the loading indicator
+    return (
+		<div>
+			<div style={{ fontSize: '24px', padding: '20px 0 0 0' }}>Loading...</div>
+			<div><LoadingAnimation/></div>
+		</div>)
     }
     const teamOptions = Array.from({ length: teamCount }, (_, index) => index + 1);
 
