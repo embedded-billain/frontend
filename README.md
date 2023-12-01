@@ -25,5 +25,5 @@
 - 뷰테이블 api받아서 데이터프레임 시각화 해주기
 - 메인화면 추가 요소 고민
 - selectbox ui 고민
-- navbar의 로고 클리시 callback 함수로 navigate("/") 되는지 확인
+- navbar의 로고 클리시 callback 함수로 navigate("/") 되는지 확인 -> (2023.12.01 완료)
 - 라즈베리파이에서 생성된 영수증은 DB의 team_id값 특정값으로 고정시키기
