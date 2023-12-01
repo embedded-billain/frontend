@@ -27,6 +27,7 @@ function Navbar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const moveToMain = () => {
+    console.log("moveToMain")
     navigate('/')
   }
   const moveToTeam = () => {
@@ -51,14 +52,14 @@ function Navbar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <img src={logo} alt="Logo" className="w-11 h-11 text-white p-2 rounded-lg" />
+          <img src={logo} alt="Logo" onClick={moveToMain} className="w-11 h-11 text-white p-2 rounded-lg" />
 
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
             component="a"
-            onClick={() => {moveToMain()}}
+            onClick={moveToMain}
             // href="/"
             sx={{
               mr: 2,
