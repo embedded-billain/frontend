@@ -16,7 +16,7 @@ export default function Card2(props) {
           사용금액
         </Typography>
         <Typography variant="h5" component="div">
-          {received_total_amount}
+          {received_total_amount.toLocaleString()}원
         </Typography>
         {/* <Typography sx={{ mb: 1.5 }} color="text.secondary">
           adjective

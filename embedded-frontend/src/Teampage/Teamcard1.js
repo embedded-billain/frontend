@@ -15,7 +15,7 @@ export default function Card1(props) {
           TOTAL
         </Typography>
         <Typography variant="h5" component="div">
-          {received_total_count}
+          {received_total_count.toLocaleString()}개
         </Typography>
       </CardContent>
     </Card>

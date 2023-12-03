@@ -27,7 +27,6 @@ const Teampage =()=>{
     const handleChange = async(event) => {
         
         const selectedValue = event.target.value;
-
         navigate(`/Teampage/${selectedValue}`);
     }
     useEffect(() => {
@@ -61,7 +60,7 @@ const Teampage =()=>{
 
     return(
         <div>
-        <div>{team_id}</div>
+        <h1>{team_id}팀의 현황입니다</h1>
         <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Team</InputLabel>
         <Select

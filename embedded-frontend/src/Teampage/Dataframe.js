@@ -101,22 +101,10 @@ const headCells = [
   },
   {
     id: 'createdAt',
-    numeric: false,
+    numeric: true,
     disablePadding: false,
     label: 'Date payed',
   },
-  // {
-  //   id: 'carbs',
-  //   numeric: true,
-  //   disablePadding: false,
-  //   label: 'Carbs (g)',
-  // },
-  // {
-  //   id: 'protein',
-  //   numeric: true,
-  //   disablePadding: false,
-  //   label: 'Protein (g)',
-  // },
 ];
 
 function EnhancedTableHead(props) {
@@ -204,8 +192,9 @@ function EnhancedTableToolbar(props) {
           variant="h6"
           id="tableTitle"
           component="div"
+          style={{ fontFamily: 'roboto' }}
         >
-          Nutrition
+          영수증 상세 내역
         </Typography>
       )}
 
