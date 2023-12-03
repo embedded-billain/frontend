@@ -20,6 +20,7 @@ const Teampage =()=>{
 
     const [jsonData ,setJsonData] = useState();
     const [teamCount ,setTeamCount] = useState();
+    const [billDataframe ,setBilldataframe] = useState();
     const navigate = useNavigate()
     const {team_id} = useParams();
 
@@ -32,14 +33,16 @@ const Teampage =()=>{
     useEffect(() => {
         async function fetchData() {
           try {
-            const [response, teamcount] = await Promise.all([
+            const [response, teamcount, billdataframe] = await Promise.all([
                 axios.get(`https://gachongo.shop/api/amount?teamId=${team_id}`),
-                axios.get(`https://gachongo.shop/api/amount/team/all`)
+                axios.get(`https://gachongo.shop/api/amount/team/all`),
+                axios.get(`https://gachongo.shop/api/bill?page=0&size=9`)
               ]);
             console.log("team",teamcount.data.teams.length);
             
             setTeamCount(teamcount.data.teams.length);
             setJsonData(response.data);
+            setBilldataframe(billdataframe)
 
           } catch (error) {
             console.error("데이터를 불러오는 중 오류 발생:", error);
@@ -85,7 +88,7 @@ const Teampage =()=>{
         <div className='piGraph'>piGraph<Pichart myProp = {jsonData.category}/></div>
         </div>
         <div className='Dataframe'>
-            <Dataframe/>
+            <Dataframe myProp = {billDataframe} myProp2 = {team_id} />
         </div>
         </div>
     )
