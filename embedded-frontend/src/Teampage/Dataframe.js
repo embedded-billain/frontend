@@ -246,7 +246,7 @@ useEffect(() => {
             recieved_dataframe[i].createdAt,
   ));
 }
-
+console.log(1)
 }, [rows]);
 
   console.log("rows", rows);
