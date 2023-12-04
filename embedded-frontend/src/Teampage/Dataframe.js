@@ -1,4 +1,5 @@
-import * as React from 'react';
+// import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -221,23 +222,34 @@ EnhancedTableToolbar.propTypes = {
 
 export default function EnhancedTable(props) {
   const recieved_dataframe = props.myProp;
-  const recieved_team_id = props.myProp2;
-
-
-
-  let rows = [];
-
-  for (let i = 0; i < recieved_dataframe.data.length; i++) {
-    if (recieved_team_id == recieved_dataframe.data[i].teamId){
-      rows.push(createData(
-        recieved_dataframe.data[i].id,
-        recieved_dataframe.data[i].storeName,
-        recieved_dataframe.data[i].amount,
-        recieved_dataframe.data[i].createdAt,
-      ));
+  const [rows, setRows] = useState([]);
+  useEffect(() => {
+    let updatedRows = [];
+    for (let i = 0; i < recieved_dataframe.length; i++) {
+        updatedRows.push(createData(
+            recieved_dataframe[i].id,
+            recieved_dataframe[i].storeName,
+            recieved_dataframe[i].amount,
+            recieved_dataframe[i].createdAt,
+        ));
     }
-  }
-  console.log(rows);
+    setRows(updatedRows);
+}, [recieved_dataframe]);
+useEffect(() => {
+  console.log("123123", rows);
+  for (let i = 0; i < recieved_dataframe.length; i++) {
+
+  rows.push(createData(
+    recieved_dataframe[i].id,
+            recieved_dataframe[i].storeName,
+            recieved_dataframe[i].amount,
+            recieved_dataframe[i].createdAt,
+  ));
+}
+
+}, [rows]);
+
+  console.log("rows", rows);
 // export default function EnhancedTable() {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
