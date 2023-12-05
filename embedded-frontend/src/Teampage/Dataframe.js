@@ -222,34 +222,26 @@ EnhancedTableToolbar.propTypes = {
 
 export default function EnhancedTable(props) {
   const recieved_dataframe = props.myProp;
-  const [rows, setRows] = useState([]);
-  useEffect(() => {
-    let updatedRows = [];
-    for (let i = 0; i < recieved_dataframe.length; i++) {
-        updatedRows.push(createData(
-            recieved_dataframe[i].id,
-            recieved_dataframe[i].storeName,
-            recieved_dataframe[i].amount,
-            recieved_dataframe[i].createdAt,
-        ));
-    }
-    setRows(updatedRows);
-}, [recieved_dataframe]);
-useEffect(() => {
-  console.log("123123", rows);
-  for (let i = 0; i < recieved_dataframe.length; i++) {
+  console.log("recieved_dataframe", recieved_dataframe.length)
 
-  rows.push(createData(
-    recieved_dataframe[i].id,
-            recieved_dataframe[i].storeName,
-            recieved_dataframe[i].amount,
-            recieved_dataframe[i].createdAt,
-  ));
-}
-console.log(1)
-}, [rows]);
-
-  console.log("rows", rows);
+  let rows = [];
+  // useEffect(() => {
+  //   async function inputData() {
+  //     for (let i = 0; i < 10; i++) {
+  //      rows.push(
+  //       createData(
+  //         recieved_dataframe[i].id,
+  //         recieved_dataframe[i].storeName,
+  //         recieved_dataframe[i].amount,
+  //         recieved_dataframe[i].createdAt,
+  //       )
+  //     )
+  //   }
+  //   }
+  //   inputData();
+  // }, [recieved_dataframe]);
+  // console.log("rows", rows);
+  
 // export default function EnhancedTable() {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');

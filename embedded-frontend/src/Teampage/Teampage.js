@@ -12,6 +12,7 @@ import Barchart from '../Barchart/TeamBarchart';
 import Pichart from '../Pichart/TeamPichart';
 import Dataframe from './Dataframe';
 import LoadingAnimation from '../Loading/Loading';
+import Test from './test';
 
 import { useParams } from 'react-router-dom';
 
@@ -27,7 +28,8 @@ const Teampage =()=>{
     const handleChange = async(event) => {
         
         const selectedValue = event.target.value;
-        navigate(`/Teampage/${selectedValue}`);
+        // navigate(`/Teampage/${selectedValue}`);
+        window.location.href = `/Teampage/${selectedValue}`;
     }
     useEffect(() => {
         async function fetchData() {
@@ -39,12 +41,13 @@ const Teampage =()=>{
               ]);
             console.log("team",teamcount.data.teams.length);
             
-            setTeamCount(teamcount.data.teams.length);
-            setJsonData(response.data);
-            setBilldataframe(billdataframe.data)
-            console.log("-----------")
-            console.log(team_id)
-            console.log("12", billdataframe.data)
+            await setTeamCount(teamcount.data.teams.length);
+            await setJsonData(response.data);
+            await setBilldataframe(billdataframe.data)
+            console.log("data", billDataframe)
+            // console.log("-----------")
+            // console.log(team_id)
+            // console.log("12", billdataframe.data)
 
           } catch (error) {
             console.error("데이터를 불러오는 중 오류 발생:", error);
@@ -90,7 +93,8 @@ const Teampage =()=>{
         <div className='piGraph'>piGraph<Pichart myProp = {jsonData.category}/></div>
         </div>
         <div className='Dataframe'>
-            <Dataframe myProp = {billDataframe}/>
+            <Test myProp = {billDataframe} />
+            {/* <Dataframe myProp = {billDataframe}/> */}
         </div>
         </div>
     )
