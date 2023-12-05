@@ -13,7 +13,7 @@ import Pichart from '../Pichart/TeamPichart';
 import Dataframe from './Dataframe';
 import LoadingAnimation from '../Loading/Loading';
 import Test from './test';
-
+import Welcome from './Welcome';
 import { useParams } from 'react-router-dom';
 
 
@@ -66,7 +66,9 @@ const Teampage =()=>{
 
     return(
         <div>
-        <h1>{team_id}팀의 현황입니다</h1>
+        <div align = "center">
+        <Welcome myProp={team_id}/>
+        </div>
         <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Team</InputLabel>
         <Select
