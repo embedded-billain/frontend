@@ -32,4 +32,11 @@
 - aws배포
 - 메인페이지 메인그래프 추가
 - 팀별페이지 팀선택 ui개선, 데이터프레임 api수정
+
+#### Problem
+- ec2에서 git clone 후 npm run build시 index.html 생성 안됨 -> local에서 build 후 FTP 이용해서 build 파일 ec2로 전송함
+
+#### Testing
+- 구겨긴 영수증
+
   
