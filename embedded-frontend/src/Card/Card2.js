@@ -15,7 +15,7 @@ export default function Card2(props) {
           TODAY
         </Typography>
         <Typography variant="h5" component="div">
-          {received_today.toLocaleString()}원
+          {received_today.toLocaleString()}건
         </Typography>
         {/* <Typography sx={{ mb: 1.5 }} color="text.secondary">
           adjective

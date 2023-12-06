@@ -42,15 +42,15 @@ const Mainpage =()=>{
         <div className='Today'><Card2 myProp = {jsonData.today}/></div>
         <div className='D-Day'><Card3/></div>
       </div>
-      <div className='Graph1' style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+      <div className='Graph1' style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' ,paddingLeft: '50px'}}>
         <div className='barGraph'>barGraph <Barchart myProp = {jsonData.teams} /> </div>
         <div className='piGraph'>piGraph<Pichart myProp = {jsonData.category}/></div>
       </div>
       <div className='Graph2' style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
-        <div className='RadarGraph'>RadarGraph <Radarchart /> </div>
+        <div className='RadarGraph'>RadarGraph <Radarchart myProp = {jsonData.category} /> </div>
         
         
-        <div className='LineGraph'>LineGraph  <Linechart /> </div>
+        <div className='LineGraph'>LineGraph  <Linechart myProp = {jsonData.teams} /> </div>
       </div> 
       </div>
     )

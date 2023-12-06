@@ -17,6 +17,17 @@ export default function SimpleBarChart(props) {
     const amountByMonthList = props.myProp;
     const reversedAmountByMonthList = [...amountByMonthList].reverse();
 
+    const modifiedData = reversedAmountByMonthList.map(item => ({
+      ...item,
+      withMonth: `${item.month}월`,
+    }));
+
+    const formatYAxis = (value) => {
+      // Divide the value by 10,000 and round to 2 decimal places
+      const formattedValue = parseInt(value / 10000);
+      return `${formattedValue}만`;
+    };
+
     const colorMap = {
         1: '#8884d8',
         2: '#8884d8',
@@ -35,10 +46,10 @@ export default function SimpleBarChart(props) {
     const colors = ['#8884d8', '#83a6ed', '#8dd1e1', '#82ca9d', '#a4de6c', '#d0ed57', '#ffc658'];
     
       return (
-        <BarChart width={730} height={250} data={reversedAmountByMonthList}>
+        <BarChart width={730} height={250} data={modifiedData}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="month" />
-          <YAxis />
+          <XAxis dataKey="withMonth" />
+          <YAxis tickFormatter={formatYAxis} />
           <Tooltip />
           <Legend />
           <Bar
