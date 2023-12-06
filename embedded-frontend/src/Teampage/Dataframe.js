@@ -189,11 +189,10 @@ function EnhancedTableToolbar(props) {
         </Typography>
       ) : (
         <Typography
-          sx={{ flex: '1 1 100%' }}
-          variant="h6"
+          // sx={{ flex: '1 1 100%' }}
+          variant="h5"
           id="tableTitle"
           component="div"
-          style={{ fontFamily: 'roboto' }}
         >
           영수증 상세 내역
         </Typography>

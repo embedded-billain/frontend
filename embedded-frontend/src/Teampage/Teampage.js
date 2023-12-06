@@ -62,7 +62,7 @@ const Teampage =()=>{
 			<div><LoadingAnimation/></div>
 		</div>)
     }
-    const teamOptions = Array.from({ length: teamCount }, (_, index) => index + 1);
+    const teamOptions = Array.from({ length: teamCount }, (_, index) => index+1);
 
     return(
         <div>
@@ -90,7 +90,7 @@ const Teampage =()=>{
         <div className='Today'><TeamCard2 myProp = {jsonData.amount}/></div>
         <div className='D-Day'><TeamCard3/></div>
         </div>
-        <div className='Graph1' style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+        <div className='Graph1' style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', paddingLeft: '50px' }}>
         <div className='barGraph'>barGraph <Barchart myProp = {jsonData.amountByMonthList} /> </div>
         <div className='piGraph'>piGraph<Pichart myProp = {jsonData.category}/></div>
         </div>
