@@ -37,7 +37,7 @@
 - ec2에서 git clone 후 npm run build시 index.html 생성 안됨 -> local에서 build 후 FTP 이용해서 build 파일 ec2로 전송함
 
 #### Testing
-- 구겨긴 영수증
+- 구겨긴 영수증 -> 인식 문제 없음
 
 view 테이블 데이터 건수  11253
 bill 테이블 데이터 건수 26000
