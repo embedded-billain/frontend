@@ -1,48 +1,27 @@
-#### raspberrypi frontend
+#  Receipt management system
+This is embedded system project using raspberry pi and carmera.
 
-#### 2023.11.22
-- google cloud vision (OCR) api 연동 및 기능 구현
-- ChatGPT api 연동 및 기능 구현
 
-#### 2023.11.23
-- 라즈베리파이 버튼, 카메라 소스 파일 생성
-- ocr, gpt 소스 파일(.py) + 라즈베리파이(버튼, 카메라) 연동 성공
-- gpt 결과 Spring Boot(Backend)로 전송 (RESTful API)
-  
-#### 2023.11.27
-- 팀별 현황 page 생성
-- Card, Select box, Dataframe, Footer, Logo 생성
-  
-#### 2023.11.29
-- api 데이터 차트와 연결 완료
-- csv파일로 seoul 테이블 생성
-- bill, seoul 테이블 조인 후 view_data 뷰 테이블 생성  
+1. Photo your receipt!<br>
+1. Check the website to see the statistics!
 
-#### To-Do
-- 라즈베리파이 실행 파일 ex) .exe 생성 -> shell script 작성
-- 라즈베리파이에서 팀 번호 키보드로 입력받을까?
-- api연동 후 차트 그리기
-- 뷰테이블 api받아서 데이터프레임 시각화 해주기
-- 메인화면 추가 요소 고민
-- selectbox ui 고민
-- navbar의 로고 클리시 callback 함수로 navigate("/") 되는지 확인 -> (2023.12.01 완료)
-- 라즈베리파이에서 생성된 영수증은 DB의 team_id값 특정값으로 고정시키기
-  
-- 12/05(월) 목표
-- aws배포
-- 메인페이지 메인그래프 추가
-- 팀별페이지 팀선택 ui개선, 데이터프레임 api수정
 
-#### Problem
-- ec2에서 git clone 후 npm run build시 index.html 생성 안됨 -> local에서 build 후 FTP 이용해서 build 파일 ec2로 전송함
+## Features
 
-#### Testing
-- 구겨긴 영수증 -> 인식 문제 없음
+- Overview of team expenditure
+- Monthly spending trends
+- Rate of expenditure categories
+### 1. Mainpage
+ Shows overall statistics of your company.
 
-view 테이블 데이터 건수  11253
-bill 테이블 데이터 건수 26000
 
-#### 교수님 Comment
-- 상용화 될 가능성 O
-- 실제로 실수가 많은 업무이다.
-- 이미지 전처리등을 해서 정확도 높여 보자
+  ![title](https://github.com/embedded-billain/frontend/blob/main/images/mainpage.png?raw=true)
+### 2. Teampage
+Shows expenditure statistics by team.
+ 
+![title](https://github.com/embedded-billain/frontend/blob/main/images/teampage.png?raw=true)
+
+## System Architecture
+
+![architecture](https://github.com/embedded-billain/frontend/blob/main/images/architecture.png?raw=true)   
+
