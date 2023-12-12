@@ -18,7 +18,7 @@ import {Routes,Route,Link, useNavigate} from "react-router-dom"
 import logo from '../Images/logo_white.png';
 
 
-const pages = ['전체 현황', '팀별 현황'];
+const pages = ['전체 현황', '팀별 현황', '영수증 업로드'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navbar() {
@@ -32,6 +32,10 @@ function Navbar() {
   }
   const moveToTeam = () => {
     navigate('/Teampage/1')
+  }
+
+  const moveToUpload = () => {
+    navigate('/Uploadpage')
   }
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -140,6 +144,9 @@ function Navbar() {
                   }
                   else if(page === '팀별 현황'){
                     moveToTeam();
+                  }
+                  else if(page === '영수증 업로드'){
+                    moveToUpload();
                   }
                 }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
