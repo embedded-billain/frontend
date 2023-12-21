@@ -10,7 +10,7 @@ export default function SimplePiChart(props){
     const category_amount = props.myProp;
     return (
         <PieChart width={730} height={250}>
-            <Pie data={category_amount} dataKey="amount" nameKey="categoryName" cx="50%" cy="50%" outerRadius={100} fill="#8884d8" label={(entry) => entry.categoryName} >
+            <Pie data={category_amount} dataKey="total_amount" nameKey="category_name" cx="50%" cy="50%" outerRadius={100} fill="#8884d8" label={(entry) => entry.category_name} >
             {category_amount.map((entry, index) => (
              <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
              ))}

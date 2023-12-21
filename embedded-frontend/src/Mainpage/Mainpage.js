@@ -16,7 +16,8 @@ const Mainpage =()=>{
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(`https://gachongo.shop/api/amount/team/all`);
+        // const response = await axios.get(`https://gachongo.shop/api/amount/team/all`);
+        const response = await axios.get(`https://dongsseop2api.shop/amount/summary`);
         setJsonData(response.data)
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -42,11 +43,11 @@ const Mainpage =()=>{
         <div className='Today'><Card2 myProp = {jsonData.today}/></div>
         <div className='D-Day'><Card3/></div>
       </div>
-      <div className='Graph1' style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' ,paddingLeft: '50px'}}>
-        <div className='barGraph'>barGraph <Barchart myProp = {jsonData.teams} /> </div>
-        <div className='piGraph'>piGraph<Pichart myProp = {jsonData.category}/></div>
+      <div className='Graph1' style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' ,paddingLeft: '50px', marginTop: '20px'}}>
+        <div className='barGraph'>팀별 최근 2개월 정산 금액 <Barchart myProp = {jsonData.teams} /> </div>
+        <div className='piGraph'>카테고리별 정산 금액<Pichart myProp = {jsonData.category}/></div>
       </div>
-      <div className='Graph2' style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+      <div className='Graph2' style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' ,marginBottom: '20px'}}>
         <div className='RadarGraph'>RadarGraph <Radarchart myProp = {jsonData.category} /> </div>
         
         

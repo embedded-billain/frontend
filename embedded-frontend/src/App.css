@@ -1,7 +1,17 @@
 .App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   text-align: center;
 }
 
+Routes {
+  flex: 1; /* Routes 컴포넌트가 남은 공간을 차지하도록 flex 속성을 추가합니다. */
+}
+
+.Footer {
+  margin-top: auto; /* Footer 위쪽에 나머지 공간을 모두 사용하여 항상 페이지 하단에 고정시킵니다. */
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

@@ -21,6 +21,8 @@ const Teampage =()=>{
 
     const [jsonData ,setJsonData] = useState();
     const [teamCount ,setTeamCount] = useState();
+    const [teamAmount ,setTeamAmount] = useState();
+    const [teamCategory ,setTeamCategory] = useState();
     const [billDataframe ,setBilldataframe] = useState();
     const navigate = useNavigate()
     const {team_id} = useParams();
@@ -34,17 +36,27 @@ const Teampage =()=>{
     useEffect(() => {
         async function fetchData() {
           try {
-            const [response, teamcount, billdataframe] = await Promise.all([
-                axios.get(`https://gachongo.shop/api/amount?teamId=${team_id}`),
-                axios.get(`https://gachongo.shop/api/amount/team/all`),
+            const [teamcount, response, team_amount, team_category, billdataframe] = await Promise.all([
+                axios.get(` https://dongsseop2api.shop/amount/summary`),
+                axios.get(`https://dongsseop2api.shop/info/${team_id}`),
+                axios.get(`https://dongsseop2api.shop/amount/${team_id}`),
+                axios.get(`https://dongsseop2api.shop/category/${team_id}`),
                 axios.get(`https://gachongo.shop/api/bill?teamId=${team_id}`)
+
+                //기존 DB
+                // axios.get(`https://gachongo.shop/api/amount?teamId=${team_id}`),
+                // axios.get(`https://gachongo.shop/api/amount/team/all`),
+                // axios.get(`https://gachongo.shop/api/bill?teamId=${team_id}`)
               ]);
             console.log("team",teamcount.data.teams.length);
             
             await setTeamCount(teamcount.data.teams.length);
             await setJsonData(response.data);
+            await setTeamAmount(team_amount.data);
+            await setTeamCategory(team_category.data);
             await setBilldataframe(billdataframe.data)
             console.log("data", billDataframe)
+            console.log('team count',teamAmount[0])
             // console.log("-----------")
             // console.log(team_id)
             // console.log("12", billdataframe.data)
@@ -66,8 +78,9 @@ const Teampage =()=>{
 
     return(
         <div>
-        <div align = "center">
-        <Welcome myProp={team_id}/>
+        {/* <div style={{  marginTop: '10px' ,marginBottom: '10px' }}> */}
+        <div style={{ width: '100%', maxWidth: 500, textAlign: 'center', margin: '10px auto' }}>
+          <Welcome myProp={team_id} />
         </div>
         <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Team</InputLabel>
@@ -90,11 +103,11 @@ const Teampage =()=>{
         <div className='Today'><TeamCard2 myProp = {jsonData.amount}/></div>
         <div className='D-Day'><TeamCard3/></div>
         </div>
-        <div className='Graph1' style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', paddingLeft: '50px' }}>
-        <div className='barGraph'>barGraph <Barchart myProp = {jsonData.amountByMonthList} /> </div>
-        <div className='piGraph'>piGraph<Pichart myProp = {jsonData.category}/></div>
+        <div className='Graph1' style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', paddingLeft: '50px',marginTop: '20px',marginBottom:'20px' }}>
+        <div className='barGraph'>최근 6개월 정산 금액 <Barchart myProp = {teamAmount} /> </div>
+        <div className='piGraph'>카테고리별 정산 금액<Pichart myProp = {teamCategory}/></div>
         </div>
-        <div className='Dataframe'>
+        <div className='Dataframe'style={{ marginBottom: '0px', border: '1px solid #ccc', backgroundColor: '#f0f0f0',padding: '10px',boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
             <Test myProp = {billDataframe} />
             {/* <Dataframe myProp = {billDataframe}/> */}
         </div>
