@@ -116,9 +116,9 @@ export default function ReactVirtualizedTable(props) {
     console.log("rows", rows)
     
   return (
-    <Paper style={{ height: 400, width: '100%' }}>
+    <Paper style={{ height: 400, width: '100%', paddingTop:'10px' ,marginBottom: '45px'}}>
         <Typography
-          sx={{ flex: '1 1 100%' }}
+          sx={{ flex: '1 1 100%', borderBottom: '2px solid #ccc', paddingBottom: '10px'  }}
           variant="h6"
           id="tableTitle"
           component="div"

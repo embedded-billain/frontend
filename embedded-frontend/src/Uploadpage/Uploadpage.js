@@ -50,7 +50,7 @@ const Uploadpage =()=>{
     const teamOptions = Array.from({ length: teamCount }, (_, index) => index+1);
 
     return(
-        <div>팀선택
+        <div style={{ minHeight: '80vh'}}>팀선택
         <div align = "center">
         </div>
         <FormControl fullWidth>

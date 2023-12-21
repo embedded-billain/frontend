@@ -70,8 +70,11 @@ export default function DragDropImageUploader(props) {
   const received_team_id = props.myProp;
   const [files, setFiles] = React.useState([]);
   const [status, setStatus] = React.useState(0);
+  const [uploadMessage, setUploadMessage] = React.useState("");
 
   const handleUploadClick = async () => {
+
+    setUploadMessage("Upload Result\n")
     // 파일 개수만큼 반복문으로 POST
     for (const file of files) {
      // axios로 POST 요청
@@ -93,12 +96,18 @@ export default function DragDropImageUploader(props) {
             },
         });
 
-        console.log('Response:', response.data);
-      } catch (error) {
-        console.error('Error:', error);
-      } finally {
-        setStatus(0);
-      }
+        if (response.data === 'success') {
+          console.log('Upload success:', file.name);
+          setUploadMessage(prevMessage => prevMessage + `SUCCESS: ${file.name}\n`);
+        } 
+          console.log('Response:', response.data);
+        } catch (error) {
+          console.error('Error:', error);
+          console.error('Upload failed:', file.name);
+          setUploadMessage(prevMessage => prevMessage + `FAILED: ${file.name}\n`);
+        } finally {
+          setStatus(0);
+        }
     }
   };
 
@@ -135,6 +144,12 @@ export default function DragDropImageUploader(props) {
       <Button onClick={handleUploadClick} disabled={status === 1}>
         {status === 0 ? 'Send to server' : <img src="./load.svg" alt="Loading..." />}
       </Button>
+      {/* {uploadMessage && <div>{uploadMessage}</div>} */}
+      {/* {uploadMessage && <pre>{uploadMessage}</pre>} */}
+      {uploadMessage && <p style={{ whiteSpace: 'pre-line', backgroundColor: '#f0f0f0', padding: '10px', borderRadius: '5px', margin: '10px 0' }}>
+        {uploadMessage}
+      </p>}
+      {/* {uploadMessage && <p style={{ whiteSpace: 'pre-line' }}>{uploadMessage}</p>} */}
     </Container>
   );
 }

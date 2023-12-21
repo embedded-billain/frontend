@@ -49,9 +49,9 @@ const data = [
     return (
         <RadarChart outerRadius={90} width={730} height={250} data={category_amount}>
             <PolarGrid />
-            <PolarAngleAxis dataKey="categoryName" />
+            <PolarAngleAxis dataKey="category_name" />
             <PolarRadiusAxis angle={30} domain={[0, 150]} />
-            <Radar name="Category" dataKey="amount" stroke="#82ca9d" fill="#a4de6c" fillOpacity={0.6} />
+            <Radar name="Category" dataKey="total_amount" stroke="#82ca9d" fill="#a4de6c" fillOpacity={0.6} />
             {/* <Radar name="Lily" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} /> */}
             <Legend />
         </RadarChart>
