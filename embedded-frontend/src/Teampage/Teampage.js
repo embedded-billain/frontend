@@ -57,6 +57,7 @@ const Teampage =()=>{
             await setBilldataframe(billdataframe.data)
             console.log("data", billDataframe)
             console.log('team count',teamAmount[0])
+            
             // console.log("-----------")
             // console.log(team_id)
             // console.log("12", billdataframe.data)

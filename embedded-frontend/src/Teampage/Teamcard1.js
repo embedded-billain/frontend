@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 
 export default function Card1(props) {
     const received_total_count = props.myProp;
+    console.log("total",received_total_count);
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
