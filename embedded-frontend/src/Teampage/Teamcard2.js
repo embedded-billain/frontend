@@ -7,8 +7,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 export default function Card2(props) {
-    const received_total_amount = props.myProp;
-
+    const received_total_amount = props.myProp?? 0;
+    // console.log("here",received_total_amount);
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>

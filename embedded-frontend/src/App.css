@@ -5,10 +5,10 @@
   text-align: center;
 }
 
-Routes {
-  flex: 1; /* Routes 컴포넌트가 남은 공간을 차지하도록 flex 속성을 추가합니다. */
-}
 
+.MainContent {
+  flex: 1; /* MainContent를 제외한 영역을 확장하기 위한 Flex 설정 */
+}
 .Footer {
   margin-top: auto; /* Footer 위쪽에 나머지 공간을 모두 사용하여 항상 페이지 하단에 고정시킵니다. */
 }
