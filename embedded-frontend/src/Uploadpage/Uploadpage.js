@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import {Routes,Route,Link, useNavigate} from "react-router-dom"
 import LoadingAnimation from '../Loading/Loading';
 import { useParams } from 'react-router-dom';
-import { DropzoneArea } from 'material-ui-dropzone';
+// import { DropzoneArea } from 'material-ui-dropzone';
 import DragDropImageUploader from './Dragdrop';
 
 const Uploadpage =()=>{

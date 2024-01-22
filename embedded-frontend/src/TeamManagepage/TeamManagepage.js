@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import { DataGrid } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -10,13 +12,12 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContentText from '@mui/material/DialogContentText';
 import Typography from '@mui/material/Typography';
 
-
 const fetchTeams = async () => {
   try {
-    const response = await fetch('https://dongsseop2api.shop/teams/info'); 
+    const response = await fetch('https://dongsseop2api.shop/teams/info');
     const data = await response.json();
-    console.log("data",data);
-    
+    console.log("data", data);
+
     return data;
   } catch (error) {
     console.error('Error fetching teams:', error);
@@ -31,10 +32,10 @@ const createTeam = async (team) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ team_name: team.teamName, description: team.description}),
+      body: JSON.stringify({ team_name: team.teamName, description: team.description }),
     });
     const responseBody = await response.text();
-    return responseBody; 
+    return responseBody;
   } catch (error) {
     console.error('Error creating team:', error);
     return null;
@@ -45,7 +46,7 @@ const deleteTeam = async (teamid) => {
   try {
     const response = await fetch(`https://dongsseop2api.shop/teams/${teamid}`, {
       method: 'DELETE',
-    }); 
+    });
     return response;
   } catch (error) {
     console.error('Error deleting team:', error);
@@ -53,18 +54,17 @@ const deleteTeam = async (teamid) => {
   }
 };
 
-
 const TeamList = () => {
-  const [teams, setTeams] = useState([]);
-  const [newTeamInfo, setNewTeamInfo] = useState({});
-  const [editTeamInfo, setEditTeamInfo] = useState({});
-  const [newTeamName, setNewTeamName] = useState('');
-  const [newTeamDescription, setnewTeamDescription] = useState('');
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-  const [isDuplicateError, setIsDuplicateError] = useState(false);
+  const [teams, setTeams] = React.useState([]);
+  const [newTeamInfo, setNewTeamInfo] = React.useState({});
+  const [editTeamInfo, setEditTeamInfo] = React.useState({});
+  const [newTeamName, setNewTeamName] = React.useState('');
+  const [newTeamDescription, setnewTeamDescription] = React.useState('');
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  const [isEditDialogOpen, setIsEditDialogOpen] = React.useState(false);
+  const [isDuplicateError, setIsDuplicateError] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     fetchData();
   }, []);
 
@@ -74,16 +74,16 @@ const TeamList = () => {
   }
   const handleCreateTeam = async () => {
     const response = await createTeam(newTeamInfo);
-    console.log("결과",response);
-    if(response ==="False")
+    console.log("결과", response);
+    if (response === "False")
       setIsDuplicateError(true);
-    else{
+    else {
 
-    setNewTeamName('');
-    setnewTeamDescription('');
-    setIsDuplicateError(false);
-    closeDialog();
-    fetchData();
+      setNewTeamName('');
+      setnewTeamDescription('');
+      setIsDuplicateError(false);
+      closeDialog();
+      fetchData();
     }
   };
 
@@ -91,7 +91,7 @@ const TeamList = () => {
     setEditTeamInfo(team);
     setIsEditDialogOpen(true);
   };
-  
+
   // 수정 다이얼로그 닫기
   const closeEditDialog = () => {
     setIsEditDialogOpen(false);
@@ -104,7 +104,7 @@ const TeamList = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ team_name: team.teamName, description: team.description}),
+        body: JSON.stringify({ team_name: team.teamName, description: team.description }),
       });
       closeEditDialog();
       fetchData();
@@ -113,14 +113,13 @@ const TeamList = () => {
       console.error('Error deleting team:', error);
       return [];
     }
-  
+
   };
 
   const handleDeleteTeam = async (team) => {
     const shouldDelete = window.confirm(`정말로 ${team.teamName} 팀을 삭제하시겠습니까?`);
-    
-    if(shouldDelete)
-    {
+
+    if (shouldDelete) {
       await deleteTeam(team.id);
       const updatedTeams = teams.filter((t) => t.id !== team.id);
       setTeams(updatedTeams);
@@ -138,6 +137,47 @@ const TeamList = () => {
     setIsDuplicateError(false);
     setIsDialogOpen(false);
   };
+
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 90 },
+    {
+      field: 'teamName',
+      headerName: '팀 이름',
+      width: 150,
+      editable: false,
+    },
+    {
+      field: 'description',
+      headerName: '팀 설명',
+      width: 400,
+      editable: false,
+    },
+    {
+      field: 'actions',
+      headerName: '관리',
+      width: 300,
+      renderCell: (params) => (
+        <div>
+          <Button
+            variant="outlined"
+            color="primary"
+            style={{ marginRight: '5px' }}
+            startIcon={<EditIcon />}
+            onClick={() => handleEditTeam(params.row)}
+          >
+            수정
+          </Button>
+          <Button
+            variant="outlined" startIcon={<DeleteIcon />} style={{ marginRight: '250px', color: 'red', borderColor: 'red' }}
+            onClick={() => handleDeleteTeam(params.row)}
+          >
+            삭제
+          </Button>
+        </div>
+      ),
+    },
+  ];
+
   return (
     <div>
       <Typography variant="h5" style={{ marginTop: '20px', marginBottom: '20px' }}>
@@ -152,22 +192,22 @@ const TeamList = () => {
         <DialogTitle>새 팀 생성</DialogTitle>
         <DialogContent>
           <div>
-          <TextField
-            label="팀 이름"
-            variant="outlined"
-            value={newTeamInfo.teamName}
-            style={{ marginTop: '10px' }}
-            onChange={(e) => setNewTeamInfo({...newTeamInfo, teamName: e.target.value})}
-          />
+            <TextField
+              label="팀 이름"
+              variant="outlined"
+              value={newTeamInfo.teamName}
+              style={{ marginTop: '10px' }}
+              onChange={(e) => setNewTeamInfo({ ...newTeamInfo, teamName: e.target.value })}
+            />
           </div>
           <div>
-          <TextField
-            label="팀 설명"
-            variant="outlined"
-            value={newTeamInfo.description}
-            style={{ marginTop: '20px' }}
-            onChange={(e) => setNewTeamInfo({ ...newTeamInfo, description: e.target.value })}
-          />
+            <TextField
+              label="팀 설명"
+              variant="outlined"
+              value={newTeamInfo.description}
+              style={{ marginTop: '20px' }}
+              onChange={(e) => setNewTeamInfo({ ...newTeamInfo, description: e.target.value })}
+            />
           </div>
           {isDuplicateError && (
             <DialogContentText style={{ color: 'red', fontSize: '14px' }}>
@@ -187,49 +227,36 @@ const TeamList = () => {
       {teams.length === 0 ? (
         <p>현재 생성된 팀이 없습니다. 팀을 생성해주세요.</p>
       ) : (
-        <div>
-          {teams.map((team) => (
-            <div key={team.id} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-              <div style={{ flex: '1' }}>{team.teamName}</div>
-              <Button
-                variant="outlined"
-                color="primary"
-                style={{ marginRight: '5px' }}
-                startIcon={<EditIcon />}
-                onClick={() => handleEditTeam(team)}
-              >
-                수정
-              </Button>
-              <Button 
-                variant="outlined" startIcon={<DeleteIcon />} style={{ marginRight: '250px',color: 'red', borderColor: 'red' }}
-                onClick={() => handleDeleteTeam(team)}
-              >
-                삭제
-              </Button>
-            </div>
-          ))}
-        </div>
+        <Box sx={{ height: 400, width: '70%', margin: 'auto' }}>
+          <DataGrid
+            rows={teams}
+            columns={columns}
+            pageSize={5}
+            checkboxSelection
+            disableRowSelectionOnClick
+          />
+        </Box>
       )}
       <Dialog open={isEditDialogOpen} onClose={closeEditDialog}>
         <DialogTitle>팀 수정</DialogTitle>
         <DialogContent>
           <div>
-          <TextField
-            label="팀 이름"
-            variant="outlined"
-            value={editTeamInfo.teamName}
-            style={{ marginTop: '10px' }}
-            onChange={(e) => setEditTeamInfo({ ...editTeamInfo, teamName: e.target.value })}
-          />
+            <TextField
+              label="팀 이름"
+              variant="outlined"
+              value={editTeamInfo.teamName}
+              style={{ marginTop: '10px' }}
+              onChange={(e) => setEditTeamInfo({ ...editTeamInfo, teamName: e.target.value })}
+            />
           </div>
           <div>
-          <TextField
-            label="팀 설명"
-            variant="outlined"
-            value={editTeamInfo.description}
-            style={{ marginTop: '20px' }}
-            onChange={(e) => setEditTeamInfo({ ...editTeamInfo, description: e.target.value })}
-          />
+            <TextField
+              label="팀 설명"
+              variant="outlined"
+              value={editTeamInfo.description}
+              style={{ marginTop: '20px' }}
+              onChange={(e) => setEditTeamInfo({ ...editTeamInfo, description: e.target.value })}
+            />
           </div>
         </DialogContent>
         <DialogActions>
@@ -242,7 +269,6 @@ const TeamList = () => {
         </DialogActions>
       </Dialog>
     </div>
-      
   );
 };
 
